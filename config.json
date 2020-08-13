@@ -1,29 +1,31 @@
 {	
-	"asset_name": "UC-8112",	
+	"asset_name": "<asset_name>",	
 	"mqtt": {
-		"broker_host": "broker.net",
-		"broker_port": 1883,
-		"client_id": "test_client",
+		"broker_host": "broker.com",
+		"broker_port": 8883,
+		"client_id": "<client_id>",
 	    "clean_session": false,
 	    "keepalive": 30,
 		"enable_tls": true,  
 		"tls_insecure_set": false,
-	    "user_name": "",
-	    "password":  "",    
-		"default_topic": "/messages/events/"
+	    "user_name": "<user name>",
+	    "password":  "<password>",    
+		"default_topic": "devices/<client_id>/messages/events/"
 	},
-	"tpg_vtag_template": "CissSensor",
 	"publish_interval": 5,
-	"vtag_tags": [
-		"CissACM0-ACCL-current",
-		"CissACM0-ACCL-mean",
-		"CissACM0-ACCL_x-mean",
-		"CissACM0-ACCL_y-mean",
-		"CissACM0-ACCL_z-mean",
-		"CissACM0-GYRO-current",
-		"CissACM0-MAGN-current",		
-		"CissACM0-TEMP-current",
-		"CissACM0-HUMI-current",
-		"CissACM0-PRES-current"	
-	]	
+	"tpg_vtag_template": "CissSensor",
+	"vtag_tags": {
+		"CissSensor": [
+			"CissACM0-ACCL-current",
+			"CissACM0-ACCL-mean",
+			"CissACM0-ACCL_x-mean",
+			"CissACM0-ACCL_y-mean",
+			"CissACM0-ACCL_z-mean",
+			"CissACM0-GYRO-current",
+			"CissACM0-MAGN-current",		
+			"CissACM0-TEMP-current",
+			"CissACM0-HUMI-current",
+			"CissACM0-PRES-current"	
+		]
+	}	
 }
