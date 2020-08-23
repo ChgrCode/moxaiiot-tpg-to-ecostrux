@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 '''
-App DataStore MQTT Template 
+App MQTT Template 
 
-DataStore class implementations  
+MQTT wrapper class implementations  
 '''
 
 '''
@@ -26,7 +26,7 @@ import paho.mqtt.client as mqtt_client
 
 from collections import deque
 
-from .chgrcodebase import *
+from chgrcodebase import *
 
 class AppMqttClient(AppBase):
     
@@ -113,13 +113,14 @@ class AppMqttClient(AppBase):
         return True
     
     def open(self):
-        self.log_debug('Open(%d) Connect to Mqtt broker [%s] port %d, keepalive=%d, on %s', self._connect_attempts, 
+        self.log_debug('Open(%d) Connect to Mqtt broker %s port %d, keepalive=%d, on %s', self._connect_attempts, 
                        self._broker_host,  self._broker_port, self._broker_keepalive, self._client_bindaddr)
         try:            
             if self._connect_attempts <= 0:
                 self._ds_handle.connect(self._broker_host, 
                                         port=self._broker_port, 
-                                        keepalive=self._broker_keepalive)  
+                                        keepalive=self._broker_keepalive, 
+                                        bind_address=self._client_bindaddr)  
             else:
                 self._ds_handle.reconnect()
                 
@@ -183,7 +184,8 @@ class AppMqttClient(AppBase):
         return pInfo  
     
     def publish_json(self, data, topic=None, net_loop=True):
-        return self.publish(json.dumps(data), topic, net_loop)
+        data = json.dumps(data)
+        return self.publish(data, topic, net_loop)
     
     def on_connect_callback(self, client, userdata, flags, rc):   
         self.log_info('OnConnect! rc=%s flags=%s', rc, flags)     
@@ -224,7 +226,5 @@ class AppMqttClient(AppBase):
         self.log_info('OnPublish MsgID [%s]', mid)
 
         return    
-        
-        
 
             
