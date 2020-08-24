@@ -46,12 +46,12 @@ asset_name: Device name as configured in EcoStruxure Machine Advaisor
 		"broker_host": "broker.com",
 		"broker_port": 8883,
 		"client_id": "<client_id>",
-	   "clean_session": false,
-	   "keepalive": 30,
+	        "clean_session": false,
+	        "keepalive": 30,
 		"enable_tls": true,  
 		"tls_insecure_set": false,
-	   "user_name": "<user name>",
-	   "password":  "<password>",    
+	        "user_name": "<user name>",
+	        "password":  "<password>",    
 		"default_topic": "devices/<client_id>/messages/events/"
 	}
 	
