@@ -1,0 +1,13 @@
+{	
+	"broker": "",
+    "clientid": "client-local-test",
+    "username": "",
+    "password": "",
+    "enable": false,
+    "enabletls": false,
+    "sendsystemstatus": true,
+    "keepalive": "30",
+    "cleansession": true,
+    "assetname": "UC82020",
+    "devicetags": [ ]
+}
