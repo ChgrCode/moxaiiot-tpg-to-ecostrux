@@ -26,7 +26,7 @@ import paho.mqtt.client as mqtt_client
 
 from collections import deque
 
-from chgrcodebase import *
+from .chgrcodebase import *
 
 class AppMqttClient(AppBase):
     
@@ -35,13 +35,14 @@ class AppMqttClient(AppBase):
         self._ext_conf = kwargs.get('conf', None)
         self._ds_handle = None
 
+        self._broker_url = None
         self._broker_host = None
         self._broker_port = 1883
         self._broker_keepalive = 60
         self._broker_username = None
         self._broker_password = None
         self._broker_enable_tls = False
-        self._broker_insecure_tls = True
+        self._broker_insecure_tls = False
         
         self._client_bindaddr = '' 
         self._client_id = self.get_base_id()
@@ -62,6 +63,25 @@ class AppMqttClient(AppBase):
         if not self._ext_conf:
             self.log_error('Empty configuration!')
             return False          
+       
+        if 'broker_url' in self._ext_conf:
+            self._broker_url = self._ext_conf['broker_url'] 
+            self.log_debug('URL: %s', self._broker_url)
+            p = '(?P<scheme>[^:/ ]+)://?(?P<host>[^:/ ]+).?(?P<port>[0-9]*).*'
+            m = re.search(p, self._broker_url)
+            if m is not None:
+                self.log_debug('URL Scheme: %s; URL Host: %s; URL Port: %s',
+                               m.group('scheme'),
+                               m.group('host'),
+                               m.group('port'))            
+                self._broker_host = m.group('host')
+                self._broker_port = int(m.group('port'))
+                if m.group('scheme') == 'mqtts':
+                    self._transport = 'tcp'
+                    self._broker_enable_tls = True  
+            else:
+                self.log_error('Invalid URL format! URL: %s', self._broker_url)    
+                return False                
        
         if 'broker_host' in self._ext_conf:
             self._broker_host = self._ext_conf['broker_host'] 
@@ -101,7 +121,7 @@ class AppMqttClient(AppBase):
         self._ds_handle.on_log = self.on_log
 
         if self._broker_username:
-            self.log_debug('Set User Name and Password')
+            self.log_debug('Set User Name (%s) and Password', self._broker_username)
             self._ds_handle.username_pw_set(username= self._broker_username,
                                             password= self._broker_password )
 

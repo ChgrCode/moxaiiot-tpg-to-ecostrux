@@ -1,12 +1,26 @@
 #!/bin/bash
 
+EXEC1=tpg_to_mqtt.py
+EXEC2=index.py
+
 retry_sleep=10
 retry_count=0
 
+if [ "$1" == "noui" ]; then
+	EXEC=$EXEC1
+else
+	EXEC=$EXEC2
+fi
+
+echo -n `date`
+echo ": Start User Program $EXEC"
+
 while true;
 do
-    python2 ./tpg_to_mqtt.py $@
-    echo "ERROR: tpg_to_mqtt.py returned with $?"
+    python ./$EXEC $@
+    ret=$?
+    echo -n `date`
+    echo ": ERROR: $EXEC returned with $ret"
     retry_count=$((retry_count + 1))
     echo "Restart $retry_count in $retry_sleep seconds"
     echo
