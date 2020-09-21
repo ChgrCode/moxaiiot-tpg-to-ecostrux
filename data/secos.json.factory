@@ -1,5 +1,5 @@
 {	
-	"broker": "mqtts://192.168.4.99:1883",
+	"broker": "",
     "clientid": "client-local-test",
     "username": "",
     "password": "",
