@@ -36,9 +36,10 @@ Publish ThingsPro Gateway Equipment Tags to EcoStruxure Machine Advaisor
 ### 3. Configuration
 
 If used with ThingsPro Gateway Web UI enabled (default) go to ThinksPro Gateway Web UI and select Menu entry Applications -> EcoStruxure Machine Advisor. 
+
 That's all, you can skipp below configuration information.
 
-If started without Web UI (User Program cmd line argument "noui"), the main script uses one json formatted configuration file which can be selected with command line argument "-c <config.json>", if not provided it will use the default "config.json" file included in the data directory. 
+If started without Web UI (User Program cmd line argument "noui"), the main script use one json formatted configuration file which can be selected with command line argument "-c <config.json>", if not provided it will use the default "config.json" file included in the data directory. 
 
 The configuration file has two main sections:
 * MQTT related connection information
