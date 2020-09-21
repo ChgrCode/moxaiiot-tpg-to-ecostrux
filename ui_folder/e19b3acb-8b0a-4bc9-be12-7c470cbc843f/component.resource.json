@@ -1,0 +1,133 @@
+{
+  "version": "1.0.0",
+  "title": "EcoStruxure Machine Advisor",
+  "uuid": "e19b3acb-8b0a-4bc9-be12-7c470cbc843f",
+  "author": {
+    "name": "Andreas Roeser",
+    "email": "andreas.roeser@moxa.com"
+  },
+  "image": "http://placehold.it/220x150",
+  "description": "Schneider EcoStruxure Setting UI",
+  "route": {
+    "state": "e19b3acb-8b0a-4bc9-be12-7c470cbc843f.secos",
+    "url": "/secos"
+  },
+  "authenticate": [
+    "root",
+    "admin",
+    "user"
+  ],
+  "files": [
+    "sanji-secos.js"
+  ],
+  "get": {
+    "url": "/resource/secos",
+    "type": "model"
+  },
+  "put": {
+    "url": "/resource/secos",
+    "type": "model"
+  },
+  "fields": [
+    {
+      "key": "enable",
+      "type": "switch",
+      "templateOptions": {
+	"label": "Enable"
+      }
+    },
+    {
+      "key": "cloud_conn_status",
+      "type": "cloud_connection",
+      "templateOptions": {
+	      "label": "Remote connection status",
+	      "event": "CCS/secos"
+      }
+    },
+    {
+         "key": "broker",
+         "type": "input",
+         "templateOptions": {
+             "label": "broker-url",
+			 "required":true
+         }
+    },
+    {
+         "key": "username",
+         "type": "input",
+         "templateOptions": {
+             "label": "Username",
+ 			 "required":true
+         }
+    },
+    {
+         "key": "clientid",
+         "type": "input",
+         "templateOptions": {
+             "label": "client-id",
+			 "required":true			 
+         }
+    },
+    {
+         "key": "password",
+         "type": "input",
+         "templateOptions": {
+             "label": "Password/Token",
+ 			 "required":true
+         }
+    },
+    {
+         "key": "assetname",
+         "type": "input",
+         "templateOptions": {
+             "label": "Asset Name",
+ 			 "required":true
+         }
+    },
+    {
+      "key": "publish_interval",
+      "type": "number",
+      "templateOptions": {
+        "label": "Publish Interval (sec)",
+        "placeholder": "(1 - 65535 sec)",
+        "required": true,
+        "min": "1",
+        "max": "65535"
+      }
+    },
+    {
+      "key": "devicetags",
+      "type": "tag_selector",
+      "templateOptions": {
+        "basePath": "/api/v1"
+      }
+    },
+    {
+         "key": "keepalive",
+         "type": "input",
+         "templateOptions": {
+             "label": "Keepalive (sec.)"
+         }
+    },
+    {
+         "key": "cleansession",
+         "type": "checkbox",
+         "templateOptions": {
+             "label": "Clean Session"
+         }
+    },
+    {
+         "key": "enabletls",
+         "type": "checkbox",
+         "templateOptions": {
+             "label": "Enable TLS"
+         }
+    },
+    {
+         "key": "sendsystemstatus",
+         "type": "checkbox",
+         "templateOptions": {
+             "label": "Send System Status (CPU-,Memory-,Disk-Usage)"
+         }
+    }  ]
+}

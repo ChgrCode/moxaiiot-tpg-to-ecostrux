@@ -1,0 +1,30 @@
+{	
+	"mqtt": {
+		"broker_host": "<mqtt broker host>",
+		"broker_port": 1883,
+		"client_id": "<client_id>",
+	    "clean_session": false,
+	    "keepalive": 30,
+		"enable_tls": false,  
+		"tls_insecure_set": false,
+	    "username": "<user name>",
+	    "password":  "<password>",    
+		"default_topic": "devices/<client_id>/messages/events/"
+	},
+	"assetname": "<asset_name>",	
+	"publish_interval": 5,
+	"publish_last_only": true,	
+	"publish_system_tags": false,
+	"tpg_vtag_template": "",
+	"vtag_tags": {
+		"CissSensor": [
+			"CissACM0-ACCL-current",
+			"CissACM0-GYRO-current",
+			"CissACM0-MAGN-current",		
+			"CissACM0-TEMP-current",
+			"CissACM0-HUMI-current",
+			"CissACM0-PRES-current"	
+		]
+	},
+    "devicetags": [ ]    
+}

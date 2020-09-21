@@ -1,0 +1,27 @@
+{
+  "name": "schneiderecostruxure",
+  "version": "0.0.1",
+  "author": "Andreas Roeser",
+  "email": "andreas.roeser@moxa.com",
+  "description": "Schneider EcoStruxure Connector",
+  "license": "",
+  "main": "index.py",
+  "argument": "",
+  "priority": 99,
+  "hook": [],
+  "dependencies": {},
+  "repository": "",
+  "role": "model",
+  "ttl": 60,
+  "resources": [
+    {
+      "methods": ["get", "put"],
+      "resource": "/resource/secos"
+    },
+    {
+      "role": "view",
+      "resource": "/CCS/secos"
+    }
+  ]
+}
+
