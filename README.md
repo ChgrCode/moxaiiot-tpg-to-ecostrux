@@ -1,7 +1,11 @@
 # moxaiiot-tpg-to-ecostrux
 Publish ThingsPro Gateway Equipment Tags to EcoStruxure Machine Advaisor
 
-[ThingsPro Gateway information](https://www.moxa.com/en/products/industrial-computing/system-software/thingspro-2)
+## [ThingsPro Gateway information](https://www.moxa.com/en/products/industrial-computing/system-software/thingspro-2)
+
+
+*******************************************************************************
+
 
 [1. Getting started](#getting-started)
 
@@ -17,15 +21,24 @@ Publish ThingsPro Gateway Equipment Tags to EcoStruxure Machine Advaisor
 
 *******************************************************************************
 <a name="getting-started"></a>
+
 ### 1. Getting started 
 
 * Download and Install ThingsPro Gateway software v2.6.x
 * Create the user program in tar.gz format (see ThingsPro Gateway documentation)
-* Upload the compressed folder to the ThingsPro Gateway User Applications
+* Upload the compressed folder to the ThingsPro Gateway User Programs
 * If used with ThingsPro Gateway Web UI select the configuration UI (Menu -> Applications -> EcoStruxure Machine Advaisor) after installation of the User Program (or if used without Web UI modify config.json file with your configuration)
+
+
+### How does this User Program integrate into ThingsPro Gateway?
+This User Program is the Northbound Interface to Schneiders EcoStruxure Machine Advaisor.
+
+![ThingsPro Gateway Basic Architecture](media/TPG_arch1.png?raw=true "ThingsPro Gatway")
+
 
 *******************************************************************************
 <a name="requirements"></a>
+
 ### 2. Requirements
 * UC-XXXX with ThingsPro Gateway v2.6.x installed
 * EcoStruxure Machine Advaisor connection information
@@ -33,9 +46,20 @@ Publish ThingsPro Gateway Equipment Tags to EcoStruxure Machine Advaisor
 
 *******************************************************************************
 <a name="configuration"></a>
+
 ### 3. Configuration
 
 If used with ThingsPro Gateway Web UI enabled (default) go to ThinksPro Gateway Web UI and select Menu entry Applications -> EcoStruxure Machine Advisor. 
+
+After uploading the compressed folder to ThingsPro Gateway User Program and enabled for running it will show up as below illustrated.
+
+![ThingsPro Gateway, User Program](media/TPG_user_program.png?raw=true "ThingsPro Gatway")
+
+The configuration menu can be selected from the left Main Menu Application section:
+
+![ThingsPro Gateway, Configuration](media/TPG_user_program_ui_menu.png?raw=true "ThingsPro Gatway")
+
+![ThingsPro Gateway, Configuration](media/TPG_user_program_ui.png?raw=true "ThingsPro Gatway")
 
 That's all, you can skipp below configuration information.
 
@@ -88,6 +112,7 @@ vtag_tags: Customised selection of Virtual Tags, based on Virtual Tag Device nam
 
 *******************************************************************************
 <a name="test"></a>
+
 ### 4. Testing the configuration
 
 This section only describes how to test the configuration modification, without Web UI. 
@@ -105,6 +130,7 @@ If everything is ok, repack the whole folder content in a *.tgz file and upload 
 
 *******************************************************************************
 <a name="todos"></a>
+
 ### 5. ToDo's 
 
 There is still a lot to do, let me know your experience or if you have some feedback.
@@ -112,6 +138,7 @@ There is still a lot to do, let me know your experience or if you have some feed
 
 *******************************************************************************
 <a name="restrictions"></a>
+
 ### 6. Restrictions
 * Only Tag Name including Timestamp and Tag values are published, other ThingsPro Gateway Tag invormation are ignored.
 * ... 
