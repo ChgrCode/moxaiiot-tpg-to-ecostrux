@@ -229,8 +229,10 @@ class TpgAppContext(AppContext):
 
         t = AppTimer()
         sleep_time = self._publish_interval
-
+        loop_counter = 0
+        
         while self._run == True:
+            loop_counter = loop_counter + 1
             t.start()
             if not self._mqtt_client.is_open():
                 self.tpg_set_controller_status(False) 
@@ -239,12 +241,14 @@ class TpgAppContext(AppContext):
             if not self._mqtt_client.is_open():
                 self.tpg_set_controller_status(False) 
                 t.stop()
+                self.log_warning('Loop %d, Not connected with broker! retry in %d seconds', loop_counter, self._publish_interval)
                 time.sleep(self._publish_interval)
                 continue
             else:
-                self.tpg_set_controller_status(True)                 
+                self.tpg_set_controller_status(True)  
                 
-            self.log_info('%d Tags in Queue, total recived %d', len(self._vtag_data), self._vtag_tags)
+            self.log_info('Loop %d, %d Tags in Queue, total recived %d', loop_counter, len(self._vtag_data), self._vtag_tags)
+            
             if self._publish_format != 'charlie':
                 self.log_warning('Wrong publish format!')
             

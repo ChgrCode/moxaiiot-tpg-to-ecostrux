@@ -7,22 +7,24 @@ Publish ThingsPro Gateway Equipment Tags to EcoStruxure Machine Advaisor
 *******************************************************************************
 
 
-[1. Getting started](#getting-started)
+[1 Getting started](#getting-started)
 
-[2. Requirements](#requirements)
+[2 Requirements](#requirements)
 
-[3. Configuration](#configuration)
+[3.1 Installation](#installation)
 
-[4. Test](#test)
+[3.2 Configuration](#configuration)
 
-[5. ToDo's](#todos)
+[4 Test](#test)
 
-[5. Restrictions](#restrictions)
+[5 ToDo's](#todos)
+
+[6 Restrictions](#restrictions)
 
 *******************************************************************************
 <a name="getting-started"></a>
 
-### 1. Getting started 
+### 1 Getting started 
 
 * Download and Install ThingsPro Gateway software v2.6.x
 * Create the user program in tar.gz format (see ThingsPro Gateway documentation)
@@ -30,7 +32,7 @@ Publish ThingsPro Gateway Equipment Tags to EcoStruxure Machine Advaisor
 * If used with ThingsPro Gateway Web UI select the configuration UI (Menu -> Applications -> EcoStruxure Machine Advaisor) after installation of the User Program (or if used without Web UI modify config.json file with your configuration)
 
 
-### How does this User Program integrate into ThingsPro Gateway?
+#### How does this User Program integrate into ThingsPro Gateway?
 This User Program is the Northbound Interface to Schneiders EcoStruxure Machine Advaisor.
 
 ![ThingsPro Gateway Basic Architecture](media/TPG_arch1.png?raw=true "ThingsPro Gatway")
@@ -39,21 +41,45 @@ This User Program is the Northbound Interface to Schneiders EcoStruxure Machine 
 *******************************************************************************
 <a name="requirements"></a>
 
-### 2. Requirements
+### 2 Requirements
 * UC-XXXX with ThingsPro Gateway v2.6.x installed
 * EcoStruxure Machine Advaisor connection information
 
+*******************************************************************************
+<a name="installation"></a>
+
+### 3.1 Installation
+
+Before crating the *.tgz package for uploading it to ThingsPro Gateway make sure that following files have execution rights.
+
+* exec (main entry point)
+* tpg_to_mqtt.py (main processing script)
+
+	root@Moxa:~#
+	root@Moxa:~# cd /home/moxa/moxaiiot-tpg-to-ecostrux/
+	root@Moxa:/home/moxa/moxaiiot-tpg-to-ecostrux# ls
+	bundle.json  exec      lib      media      tpg_to_mqtt.py
+	data         index.py  LICENSE  README.md  ui_folder
+	root@Moxa:/home/moxa/moxaiiot-tpg-to-ecostrux# chmod +x exec
+	root@Moxa:/home/moxa/moxaiiot-tpg-to-ecostrux# chmod +x tpg_to_mqtt.py
+	root@Moxa:/home/moxa/moxaiiot-tpg-to-ecostrux# tar -czf my-ecostrux_v1.tgz *
+	root@Moxa:/home/moxa/moxaiiot-tpg-to-ecostrux#
+
+
+Copy my-ecostrux_v1.tgz to your PC and upload it to ThingsPro Gateway on Main Menu -> User Programs.
+
+See also ThingsPro Gateway user documentation for further information.
+
+![ThingsPro Gateway, User Program](media/TPG_user_program.png?raw=true "ThingsPro Gatway")
 
 *******************************************************************************
 <a name="configuration"></a>
 
-### 3. Configuration
+### 3.2 Configuration
 
 If used with ThingsPro Gateway Web UI enabled (default) go to ThinksPro Gateway Web UI and select Menu entry Applications -> EcoStruxure Machine Advisor. 
 
 After uploading the compressed folder to ThingsPro Gateway User Program and enabled for running it will show up as below illustrated.
-
-![ThingsPro Gateway, User Program](media/TPG_user_program.png?raw=true "ThingsPro Gatway")
 
 The configuration menu can be selected from the left Main Menu Application section:
 
@@ -113,7 +139,7 @@ vtag_tags: Customised selection of Virtual Tags, based on Virtual Tag Device nam
 *******************************************************************************
 <a name="test"></a>
 
-### 4. Testing the configuration
+### 4 Testing the configuration
 
 This section only describes how to test the configuration modification, without Web UI. 
 Copy the project folder to UC e.g.: /home/moxa
@@ -131,7 +157,7 @@ If everything is ok, repack the whole folder content in a *.tgz file and upload 
 *******************************************************************************
 <a name="todos"></a>
 
-### 5. ToDo's 
+### 5 ToDo's 
 
 There is still a lot to do, let me know your experience or if you have some feedback.
 * ...
@@ -139,7 +165,7 @@ There is still a lot to do, let me know your experience or if you have some feed
 *******************************************************************************
 <a name="restrictions"></a>
 
-### 6. Restrictions
+### 6 Restrictions
 * Only Tag Name including Timestamp and Tag values are published, other ThingsPro Gateway Tag invormation are ignored.
 * ... 
 

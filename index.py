@@ -7,6 +7,7 @@ import os
 import subprocess
 import json
 import sh
+import time
 from sanji.core import Route
 from sanji.core import Sanji
 
@@ -62,20 +63,25 @@ class Index(Sanji):
 
     def start_executable(self):
         process = os.path.join(self.path_root, self.executable)
-        _logger.info('Executable: %s', process)
+        _logger.info('Start executable: %s', process)
         popen_param = list()
         popen_param.append(process)
         popen_param.extend(self.executable_param)
         _logger.info("Starting executable %s", popen_param)
         self.mySubP = subprocess.Popen(popen_param)
+        if self.mySubP.poll() != None:
+            _logger.info("Starting Failed, process not running")
+            return False
         return True
     
     def stop_executable(self):
         _logger.info("Stopping executable %s", self.executable)
         if self.mySubP != None:
             self.mySubP.kill()
-        #initially make sure the executable is not running already -- restart it if it is supposed to run
-        subprocess.call(['killall', self.executable])
+            time.sleep(1)
+            if self.mySubP.poll() == None:
+                _logger.error("Process still running killing it")
+                subprocess.call(['killall', self.executable])
         self.mySubP = None
         return True
 
@@ -111,9 +117,15 @@ class Index(Sanji):
                 if self.mySubP.poll() is None:
                     _logger.warning('Trying to start executable but already running! Restarting')
                     self.stop_executable()
-                    self.start_executable()
+                    if self.start_executable() is False:
+                        # clean up
+                        self.stop_executable()
+                        setCCS('False')
             else:
-                self.start_executable()
+                if self.start_executable() is False:
+                    # clean up
+                    self.stop_executable()
+                    setCCS('False')                   
         else:
             self.stop_executable()
             setCCS('False')
@@ -126,16 +138,15 @@ class Index(Sanji):
         status = False
         data = self.secos.get()
         if message.data['status'] == 'False':
-            print ("Remote connection status: " + message.data['status'])
             data['cloud_conn_status'] = status
             self.secos.put(data)
         else:
             if data['enable']:
                 status = True
-                print ("Remote connection status:: " +message.data['status'])
                 data['cloud_conn_status'] = status
                 self.secos.put(data)
 
+        _logger.debug("Remote connection status:: %s", message.data['status'])
         self.publish.event.put(
             "/socket/app/message",
             data={

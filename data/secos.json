@@ -1,6 +1,6 @@
 {	
-	"broker": "",
-    "clientid": "client-local-test",
+	"broker": "mqtts://192.168.4.99:1883",
+    "clientid": "tpg_to_mqtt",
     "username": "",
     "password": "",
     "enable": false,
@@ -8,6 +8,7 @@
     "sendsystemstatus": true,
     "keepalive": "30",
     "cleansession": true,
-    "assetname": "UC82020",
+    "assetname": "UC8000",
+    "publish_interval": 5,
     "devicetags": [ ]
 }
