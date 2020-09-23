@@ -55,6 +55,7 @@ Before creating the *.tgz package for uploading it to ThingsPro Gateway make sur
 * exec (main entry point)
 * tpg_to_mqtt.py (main processing script)
 
+
 	root@Moxa:~# cd /home/moxa/moxaiiot-tpg-to-ecostrux/
 	root@Moxa:/home/moxa/moxaiiot-tpg-to-ecostrux# ls
 	bundle.json  exec      lib      media      tpg_to_mqtt.py
