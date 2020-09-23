@@ -1,5 +1,5 @@
 # moxaiiot-tpg-to-ecostrux
-Publish ThingsPro Gateway Equipment Tags to EcoStruxure Machine Advaisor
+Publish ThingsPro Gateway Equipment Tags to EcoStruxure Machine Advisor
 
 ## [ThingsPro Gateway information](https://www.moxa.com/en/products/industrial-computing/system-software/thingspro-2)
 
@@ -29,13 +29,13 @@ Publish ThingsPro Gateway Equipment Tags to EcoStruxure Machine Advaisor
 * Download and Install ThingsPro Gateway software v2.6.x
 * Create the user program in tar.gz format (see ThingsPro Gateway documentation)
 * Upload the compressed folder to the ThingsPro Gateway User Programs
-* If used with ThingsPro Gateway Web UI select the configuration UI (Menu -> Applications -> EcoStruxure Machine Advaisor) after installation of the User Program (or if used without Web UI modify config.json file with your configuration)
+* If used with ThingsPro Gateway Web UI select the configuration UI (Menu -> Applications -> EcoStruxure Machine Advisor) after installation of the User Program (or if used without Web UI modify config.json file with your configuration)
 
 
 #### How does this User Program integrate into ThingsPro Gateway?
-This User Program is the Northbound Interface to Schneiders EcoStruxure Machine Advaisor.
+This User Program is the Northbound Interface to Schneiders EcoStruxure Machine Advisor.
 
-![ThingsPro Gateway Basic Architecture](media/TPG_arch1.png?raw=true "ThingsPro Gatway")
+![ThingsPro Gateway Basic Architecture](media/TPG_arch1.png?raw=true "ThingsPro Gateway")
 
 
 *******************************************************************************
@@ -43,19 +43,18 @@ This User Program is the Northbound Interface to Schneiders EcoStruxure Machine 
 
 ### 2 Requirements
 * UC-XXXX with ThingsPro Gateway v2.6.x installed
-* EcoStruxure Machine Advaisor connection information
+* EcoStruxure Machine Advisor connection information
 
 *******************************************************************************
 <a name="installation"></a>
 
 ### 3.1 Installation
 
-Before crating the *.tgz package for uploading it to ThingsPro Gateway make sure that following files have execution rights.
+Before creating the *.tgz package for uploading it to ThingsPro Gateway make sure that following files have execution rights.
 
 * exec (main entry point)
 * tpg_to_mqtt.py (main processing script)
 
-	root@Moxa:~#
 	root@Moxa:~# cd /home/moxa/moxaiiot-tpg-to-ecostrux/
 	root@Moxa:/home/moxa/moxaiiot-tpg-to-ecostrux# ls
 	bundle.json  exec      lib      media      tpg_to_mqtt.py
@@ -70,14 +69,14 @@ Copy my-ecostrux_v1.tgz to your PC and upload it to ThingsPro Gateway on Main Me
 
 See also ThingsPro Gateway user documentation for further information.
 
-![ThingsPro Gateway, User Program](media/TPG_user_program.png?raw=true "ThingsPro Gatway")
+![ThingsPro Gateway, User Program](media/TPG_user_program.png?raw=true "ThingsPro Gateway")
 
 *******************************************************************************
 <a name="configuration"></a>
 
 ### 3.2 Configuration
 
-If used with ThingsPro Gateway Web UI enabled (default) go to ThinksPro Gateway Web UI and select Menu entry Applications -> EcoStruxure Machine Advisor. 
+If used with ThingsPro Gateway Web UI enabled (default) go to ThingsPro Gateway Web UI and select Menu entry Applications -> EcoStruxure Machine Advisor. 
 
 After uploading the compressed folder to ThingsPro Gateway User Program and enabled for running it will show up as below illustrated.
 
@@ -87,7 +86,7 @@ The configuration menu can be selected from the left Main Menu Application secti
 
 ![ThingsPro Gateway, Configuration](media/TPG_user_program_ui.png?raw=true "ThingsPro Gatway")
 
-That's all, you can skipp below configuration information.
+That's all, you can skip below configuration information.
 
 If started without Web UI (User Program cmd line argument "noui"), the main script use one json formatted configuration file which can be selected with command line argument "-c <config.json>", if not provided it will use the default "config.json" file included in the data directory. 
 
@@ -97,7 +96,7 @@ The configuration file has two main sections:
 
 	"assetname": "<asset_name>"
 	
-asset_name: Device name as configured in EcoStruxure Machine Advaisor 
+asset_name: Device name as configured in EcoStruxure Machine Advisor 
 	
 	"mqtt": {
 		"broker_host": "<mqtt broker host>",
@@ -134,7 +133,7 @@ defined on this Virtual Tag Device in case "vtag_tags" is empty.
 		]
 	}
 
-vtag_tags: Customised selection of Virtual Tags, based on Virtual Tag Device name and a list of Virtual Tags.
+vtag_tags: Customized selection of Virtual Tags, based on Virtual Tag Device name and a list of Virtual Tags.
 
 *******************************************************************************
 <a name="test"></a>
@@ -144,7 +143,7 @@ vtag_tags: Customised selection of Virtual Tags, based on Virtual Tag Device nam
 This section only describes how to test the configuration modification, without Web UI. 
 Copy the project folder to UC e.g.: /home/moxa
 
-ajust the config.json configuration file if needed and execute the main script
+adjust the config.json configuration file if needed and execute the main script
 
 	$ sudo python3 tpg_to_mqtt.py -v
 
@@ -166,6 +165,6 @@ There is still a lot to do, let me know your experience or if you have some feed
 <a name="restrictions"></a>
 
 ### 6 Restrictions
-* Only Tag Name including Timestamp and Tag values are published, other ThingsPro Gateway Tag invormation are ignored.
+* Only Tag Name including Timestamp and Tag values are published, other ThingsPro Gateway Tag information are ignored.
 * ... 
 
