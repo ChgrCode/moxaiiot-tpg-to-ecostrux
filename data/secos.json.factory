@@ -9,5 +9,6 @@
     "keepalive": "30",
     "cleansession": false,
     "assetname": "",
+    "publish_interval": 5,
     "devicetags": [ ]
 }

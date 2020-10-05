@@ -59,7 +59,7 @@ class TpgAppContext(AppContext):
         self._vtag_subscribe = {}
         self._publish_interval = 5.0
         self._publish_format = 'charlie'
-        self._publish_last_only = True
+        self._publish_last_only = False
         self._publish_system_status = False
         self.asset_name = None
         
