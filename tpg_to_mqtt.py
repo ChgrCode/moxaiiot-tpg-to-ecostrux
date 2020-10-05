@@ -6,7 +6,7 @@ Subscribe for Tags on ThingsPro Gateway and publish to Mqtt Client
 
 '''
 Change log
-0.3.0 - 2020-09-07 - cg
+0.3.2 - 2020-09-07 - cg
     Add TPG Web UI config options
     Default Python 3 (TPG default now)
     
@@ -17,7 +17,7 @@ Change log
 
 __author__ = "Christian G."
 __license__ = "MIT"
-__version__ = '0.3.1'
+__version__ = '0.3.2'
 __status__ = "beta"
 
 import sys, time
