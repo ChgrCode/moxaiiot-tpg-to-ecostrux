@@ -27,7 +27,7 @@ Publish ThingsPro Gateway Equipment Tags to EcoStruxure Machine Advisor
 ### 1 Getting started 
 
 * Download and Install ThingsPro Gateway software v2.6.x
-* Create the user program in tar.gz format (see ThingsPro Gateway documentation)
+* Create the user program in tar.gz format or use pre-build bundle from "bin" folder above (see ThingsPro Gateway documentation)
 * Upload the compressed folder to the ThingsPro Gateway User Programs
 * If used with ThingsPro Gateway Web UI select the configuration UI (Menu -> Applications -> EcoStruxure Machine Advisor) after installation of the User Program (or if used without Web UI modify config.json file with your configuration)
 
